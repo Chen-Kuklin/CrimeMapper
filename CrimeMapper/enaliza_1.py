@@ -8,7 +8,7 @@ df_crime = pd.read_csv('filter.csv')
 # Join the statistical areas map file to crime data
 df_final_join = df.merge(df_crime, left_on='YISHUV_STAT11', right_on='StatArea')
 # ////////////////////////////////////////////////////////////
-# task1 sum
+# task1 
 # ///////////////////////////////////////////////////////
 # Group the rows by the yishuv_stat11 and StatisticCrimeGroup columns
 # and calculate the sum of the TikimSum column
@@ -16,7 +16,7 @@ df_sum = df_final_join.groupby(['YISHUV_STAT11', 'StatisticCrimeGroup'])['TikimS
 # Rename the column with the sum of TikimSum to tikim_sum
 df_sum = df_sum.rename(columns={'TikimSum': 'tikim_sum'})
 # ////////////////////////////////////////////////////////////
-# task2 max
+# task2 
 # ///////////////////////////////////////////////////////
 #  maximum value of 'tikim_sum' for each 'yishuv_stat11'
 miss_namegroup = df_sum.groupby('YISHUV_STAT11')['tikim_sum'].max().reset_index()
