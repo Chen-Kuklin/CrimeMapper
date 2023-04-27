@@ -23,7 +23,7 @@ df_reprojected = gdf_police_stations.to_crs(gdb_2020_crs)
 police_for_stt=gpd.sjoin(df_reprojected,gdb_2020,how='left',op="contains") 
 # join  whith crime
 result= df_crime.merge(police_for_stt, left_on='StatArea', right_on='YISHUV_STAT11')
-# task1 sum
+# task1
 # ///////////////////////////////////////////////////////
 # Group the rows by the yishuv_stat11 and StatisticCrimeGroup columns
 # and calculate the sum of the TikimSum column
@@ -31,7 +31,7 @@ df_sum = result.groupby(['tahananame', 'StatisticCrimeGroup'])['TikimSum'].sum()
 #  # Rename the column with the sum of TikimSum to tikim_sum
 df_sum = df_sum.rename(columns={'TikimSum': 'tikim_sum'})
 start_time=time.time()
-# task2 max
+# task2 
 # ///////////////////////////////////////////////////////
 miss_namegroup = df_sum.groupby('tahananame')['tikim_sum'].max().reset_index()
 # Rename the 'tikim_sum' column to 'tikim_max'
